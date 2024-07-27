@@ -20,4 +20,16 @@ model User {
   age        Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  House      House[]
+}
+
+model House {
+  id           String   @id @default(uuid())
+  address      String   @unique
+  wifiPassword String?
+  owner        User     @relation(fields: [userId], references: [id])
+  ownerId      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  userId       Int
 }
